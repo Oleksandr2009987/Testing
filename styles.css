@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    padding-bottom: 80px;
+}
+
+.container {
+    width: 80%;
+    text-align: center;
+    flex-grow: 1;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    color: #fff;
+}
+
+.search-input {
+    margin-top: 10px;
+    padding: 10px;
+    width: 80%;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;  /* Округление для поля поиска */
+    background-color: #333;
+    color: white;
+}
+
+.search-input:focus {
+    outline: none;
+    background-color: #444;
+}
+
+.playlist {
+    width: 100%;
+}
+
+.playlist ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.playlist li {
+    background-color: #333;
+    margin: 5px 0;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;  /* Округление для элементов списка */
+}
+
+.playlist li:hover {
+    background-color: #444;
+}
+
+.music-player {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #222;
+    padding: 10px;
+    text-align: center;
+    border-top-left-radius: 20px;  /* Округление верхнего левого угла */
+    border-top-right-radius: 20px;  /* Округление верхнего правого угла */
+}
+
+audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;  /* Округление для элемента audio */
+}
+/* Стили для плейлиста */
+.playlist ul {
+    list-style: none;
+    padding: 0;
+}
+
+.playlist li {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #454545;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.playlist li:hover {
+    background-color: #e0e0e0;
+}
+
+/* Добавляем стиль для текущего трека */
+.playlist li.playing {
+    background-color: #bdbdbd; /* Серый цвет для текущего трека */
+    color: black;
+}
+
+/* Стиль для музыкального плеера */
+.music-player {
+    text-align: center;
+    margin-top: 20px;
+}

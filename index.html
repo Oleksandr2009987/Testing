@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveMusic</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>DriveMusic</h1>
+            <input type="text" id="search" placeholder="Пошук пісень..." class="search-input" />
+        </header>
+
+        <div class="playlist">
+            <h2>Музика</h2>
+            <ul id="playlist"></ul>
+        </div>
+    </div>
+
+    <div class="music-player">
+        <audio id="audioPlayer" controls>
+            <source src="" id="audioSource" type="audio/mp3" />
+            Ваш браузер не поддерживает аудиоформат.
+        </audio>
+    </div>
+
+    <script>
+        const playlist = document.getElementById('playlist');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const searchInput = document.getElementById('search');
+
+const mp3Files = [
+    'music/LoveParis.mp3',
+    'music/Ёлка - На воздушном шаре.mp3',
+    'music/DK Ночь.mp3',
+    'music/ENINA - Парень из IT.mp3',
+    'music/DEAD BLONDE - «Банкомат».mp3',
+    'music/Егор Крид - Самая Самая.mp3',
+    'music/МАША КОНДРАТЕНКО - вогник вогник.mp3',
+    'music/IOWA - Маршрутка.mp3',
+    'music/Стас Костюшкин - Женщина, я не танцую.mp3',
+    'music/Toxi$ – I GOT U.mp3',
+    'music/Feduk & Allj - Розовое вино.mp3',
+    'music/АКУЛИЧ, Молодой Платон - ПОДАРОК.mp3',
+    'music/Разноцветные таблетки.mp3',
+    'music/DEAD BLONDE - СНЕГ РАСТАЯЛ НА ПЛЕЧАХ.mp3',
+    'music/Время и Стекло - На Стиле.mp3',
+    'music/Big Baby Tape - Turbo.mp3',
+    'music/DEAD BLONDE – Мальчик на девятке.mp3',
+    'music/алёна швец. - ПОРТВЕЙН.mp3',
+    'music/Питер – город криминала.mp3',
+    'music/Ёлка - Прованс.mp3',
+    'music/18.mp3',
+    'music/19.mp3',
+    'music/20.mp3',
+    'music/21.mp3',
+    'music/22.mp3',
+    'music/23.mp3',
+    'music/24.mp3',
+    'music/25.mp3',
+    'music/26.mp3',
+    'music/27.mp3',
+    'music/28.mp3',
+    'music/29.mp3',
+    'music/30.mp3',
+    'music/31.mp3',
+    'music/32.mp3',
+    'music/33.mp3'
+];
+
+        let currentSongIndex = 0; // Индекс текущей песни
+
+        // Функция для отображения песен в списке
+        function renderPlaylist(filteredSongs) {
+            playlist.innerHTML = '';
+            filteredSongs.forEach((song, index) => {
+                const songName = song.split('/').pop().replace('.mp3', ''); // Получаем название файла без расширения
+                const li = document.createElement('li');
+                li.textContent = songName;
+                li.addEventListener('click', () => {
+                    currentSongIndex = index;
+                    playSong(filteredSongs[currentSongIndex]);
+                });
+                playlist.appendChild(li);
+            });
+        }
+
+        // Функция для воспроизведения выбранной песни
+        function playSong(song) {
+            const audioSource = document.getElementById('audioSource');
+            audioSource.src = song;
+            audioPlayer.load();
+            audioPlayer.play();
+        }
+
+        // Функция для перехода к следующей песне
+        function playNextSong() {
+            currentSongIndex = (currentSongIndex + 1) % mp3Files.length; // Переход к следующему треку
+            playSong(mp3Files[currentSongIndex]);
+        }
+
+        // Обработчик события завершения воспроизведения
+        audioPlayer.addEventListener('ended', playNextSong);
+
+        // Отображаем все песни
+        renderPlaylist(mp3Files);
+
+        // Обработчик поиска
+        searchInput.addEventListener('input', (e) => {
+            const searchQuery = e.target.value.toLowerCase();
+            const filteredSongs = mp3Files.filter(song =>
+                song.toLowerCase().includes(searchQuery)
+            );
+            renderPlaylist(filteredSongs);
+        });
+    </script>
+</body>
+</html>
